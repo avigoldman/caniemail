@@ -1,0 +1,12 @@
+name: Fetch JSON Updates
+on:
+  schedule:
+    # run once a day
+    - cron: '0 0 * * *'
+  workflow_dispatch:
+jobs:
+  publish-npm:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: ./scripts/update-data.sh

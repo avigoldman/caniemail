@@ -1,0 +1,263 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`check() works > checks content with rem unit 1`] = `
+{
+  "issues": {
+    "errors": Map {
+      "outlook.windows" => [
+        {
+          "notes": [],
+          "title": "rem unit",
+        },
+      ],
+    },
+    "warnings": Map {},
+  },
+  "success": false,
+}
+`;
+
+exports[`check() works > fails with unsupported class selectors 1`] = `
+{
+  "issues": {
+    "errors": Map {
+      "gmail.mobile-webmail" => [
+        {
+          "notes": [],
+          "title": "Class selector",
+        },
+      ],
+    },
+    "warnings": Map {},
+  },
+  "success": false,
+}
+`;
+
+exports[`check() works > parses inline CSS 1`] = `
+{
+  "issues": {
+    "errors": Map {},
+    "warnings": Map {
+      "gmail.desktop-webmail" => [
+        {
+          "notes": [
+            "Partial. Replaced by a \`<div>\` with supported attributes.",
+          ],
+          "title": "<body> element",
+        },
+      ],
+      "gmail.ios" => [
+        {
+          "notes": [
+            "Partial. Replaced by a \`<div>\` with supported attributes.",
+          ],
+          "title": "<body> element",
+        },
+      ],
+      "gmail.android" => [
+        {
+          "notes": [
+            "Partial. Replaced by a \`<div>\` with supported attributes.",
+          ],
+          "title": "<body> element",
+        },
+      ],
+      "gmail.mobile-webmail" => [
+        {
+          "notes": [
+            "Partial. Replaced by a \`<div>\` with supported attributes.",
+          ],
+          "title": "<body> element",
+        },
+      ],
+    },
+  },
+  "success": true,
+}
+`;
+
+exports[`check() works > should fail on unsupported <style> features 1`] = `
+{
+  "issues": {
+    "errors": Map {
+      "gmail.desktop-webmail" => [
+        {
+          "notes": [],
+          "title": "filter",
+        },
+      ],
+    },
+    "warnings": Map {
+      "gmail.desktop-webmail" => [
+        {
+          "notes": [
+            "Partial. Replaced by a \`<div>\` with supported attributes.",
+          ],
+          "title": "<body> element",
+        },
+      ],
+    },
+  },
+  "success": false,
+}
+`;
+
+exports[`check() works > should fail on unsupported inline-style features 1`] = `
+{
+  "issues": {
+    "errors": Map {
+      "gmail.desktop-webmail" => [
+        {
+          "notes": [],
+          "title": "flex-direction:column",
+        },
+      ],
+    },
+    "warnings": Map {
+      "gmail.desktop-webmail" => [
+        {
+          "notes": [
+            "Partial. Replaced by a \`<div>\` with supported attributes.",
+          ],
+          "title": "<body> element",
+        },
+      ],
+    },
+  },
+  "success": false,
+}
+`;
+
+exports[`check() works > should fail with unsupported element-attribute pairs 1`] = `
+{
+  "issues": {
+    "errors": Map {
+      "gmail.ios" => [
+        {
+          "notes": [
+            "Buggy. Clicking an anchor link does nothing.",
+          ],
+          "title": "Local anchors",
+        },
+      ],
+    },
+    "warnings": Map {
+      "gmail.ios" => [
+        {
+          "notes": [
+            "Partial. Replaced by a \`<div>\` with supported attributes.",
+          ],
+          "title": "<body> element",
+        },
+      ],
+    },
+  },
+  "success": false,
+}
+`;
+
+exports[`check() works > should fail with unsupported element-attribute pairs 2`] = `
+{
+  "issues": {
+    "errors": Map {
+      "outlook.windows" => [
+        {
+          "notes": [],
+          "title": "display:flex",
+        },
+      ],
+    },
+    "warnings": Map {
+      "outlook.windows" => [
+        {
+          "notes": [
+            "Buggy. \`display:none\` does not inherit to inner tables.",
+            "Partial. Only supports \`display:none\` (but not on \`<img>\`).",
+          ],
+          "title": "display",
+        },
+      ],
+    },
+  },
+  "success": false,
+}
+`;
+
+exports[`check() works > should work with selectors 1`] = `
+{
+  "issues": {
+    "errors": Map {},
+    "warnings": Map {
+      "gmail.desktop-webmail" => [
+        {
+          "notes": [
+            "Partial. Only supports \`[attr~=value]\` syntax. Only \`class\` as an attribute name is known to be supported.",
+          ],
+          "title": "Attribute selector",
+        },
+        {
+          "notes": [
+            "Partial. Replaced by a \`<div>\` with supported attributes.",
+          ],
+          "title": "<body> element",
+        },
+      ],
+    },
+  },
+  "success": true,
+}
+`;
+
+exports[`check() works > works with blank email template 1`] = `
+{
+  "issues": {
+    "errors": Map {},
+    "warnings": Map {
+      "gmail.desktop-webmail" => [
+        {
+          "notes": [
+            "Partial. Replaced by a \`<div>\` with supported attributes.",
+          ],
+          "title": "<body> element",
+        },
+      ],
+      "gmail.ios" => [
+        {
+          "notes": [
+            "Partial. Replaced by a \`<div>\` with supported attributes.",
+          ],
+          "title": "<body> element",
+        },
+      ],
+      "gmail.android" => [
+        {
+          "notes": [
+            "Partial. Replaced by a \`<div>\` with supported attributes.",
+          ],
+          "title": "<body> element",
+        },
+      ],
+      "gmail.mobile-webmail" => [
+        {
+          "notes": [
+            "Partial. Replaced by a \`<div>\` with supported attributes.",
+          ],
+          "title": "<body> element",
+        },
+      ],
+    },
+  },
+  "success": true,
+}
+`;
+
+exports[`check() works > works with empty styles 1`] = `
+{
+  "issues": {
+    "errors": Map {},
+    "warnings": Map {},
+  },
+  "success": true,
+}
+`;
