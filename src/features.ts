@@ -4,10 +4,8 @@ import onetime from 'onetime';
 import json from './data/can-i-email.json';
 import { getSupportType, type EmailClient } from './clients';
 
-interface Feature {
-  link: string;
-  name: string;
-  notes?: string[];
+export interface FeatureInfo extends FeatureIssue {
+  url: string;
 }
 
 export interface FeatureIssue {
@@ -136,48 +134,34 @@ export const getFeatures = onetime((): GetFeaturesResult => {
   };
 });
 
-export const getSupportedFeatures = (clients: EmailClient[]) => {
+export const getAllFeatures = (clients: EmailClient[]) => {
+  const results = {
+    supported: new FeatureMap<FeatureInfo>(),
+    unsupported: new FeatureMap<FeatureInfo>()
+  };
   const { all: features } = getFeatures();
-  const supportedFeatures: Feature[] = [];
 
-  for (const [featureTitle, featureData] of features) {
-    const currentFeature: Feature = {
-      link: featureData.url,
-      name: featureTitle
-    };
-    let isFeatureSupported = true;
+  for (const [, feature] of features) {
+    const { stats, title, url } = feature;
 
-    for (const emailClient of clients) {
-      const { stats } = featureData;
-      const supportMap = getProperty(stats, emailClient);
+    for (const client of clients) {
+      const supportMap = getProperty(stats, client);
 
       // eslint-disable-next-line no-continue
       if (supportMap === void 0) continue;
 
       const supportStatus = getSupportType(supportMap);
+      const notes = (supportStatus.noteNumbers ?? []).map(
+        (noteNumber) => feature.notes_by_num![String(noteNumber)]
+      );
 
       if (supportStatus.type === 'none') {
-        isFeatureSupported = false;
-        break;
+        results.unsupported.set(client, { notes, title, url });
+      } else if (supportStatus.type === 'partial') {
+        results.supported.set(client, { notes, title, url });
       }
-
-      if (supportStatus.type === 'partial') {
-        currentFeature.notes ??= [];
-
-        for (const noteNumber of supportStatus.noteNumbers ?? []) {
-          currentFeature.notes.push(
-            `Note about \`${featureTitle}\` support for \`${emailClient}\`: ${
-              featureData.notes_by_num![String(noteNumber)]
-            }`
-          );
-        }
-      }
-    }
-
-    if (isFeatureSupported) {
-      supportedFeatures.push(currentFeature);
     }
   }
 
-  return supportedFeatures;
+  return results;
 };

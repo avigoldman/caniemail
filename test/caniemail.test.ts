@@ -2,7 +2,6 @@ import { outdent } from 'outdent';
 import { describe, expect, test } from 'vitest';
 
 import { caniemail } from '../src/index';
-// import { getSupportedFeatures } from '../src/features';
 
 describe('check() works', () => {
   test('works with blank email template', () => {
@@ -124,24 +123,6 @@ describe('check() works', () => {
       expect(result).toMatchSnapshot();
     }
   });
-
-  // // test('getSupportedFeatures()', () => {
-  // //   const doIUse = new DoIUseEmail({ clients: ['*'] });
-  // //   const supportedFeatures = getSupportedFeatures(doIUse.emailClients);
-  // //   const someNon100SupportedFeatureTitles = ['lang attribute', 'address', '<body> element'];
-  // //   const some100SupportedFeatureTitles = ['<h1> to <h6> elements', 'padding', 'margin'];
-  // //   expect(
-  // //     someNon100SupportedFeatureTitles.every(
-  // //       (featureTitle) => !supportedFeatures.some((feature) => feature.name === featureTitle)
-  // //     )
-  // //   ).toBe(true);
-  // //   expect(
-  // //     some100SupportedFeatureTitles.every((featureTitle) =>
-  // //       supportedFeatures.some((feature) => feature.name === featureTitle)
-  // //     )
-  // //   ).toBe(true);
-  // //   expect(getSupportedFeatures(doIUse.emailClients)).toMatchSnapshot();
-  // // });
 
   test('works with empty styles', () => {
     // iOS Gmail does not support local anchors: https://www.caniemail.com/features/html-anchor-links/

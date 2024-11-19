@@ -1,3 +1,5 @@
+import micromatch from 'micromatch';
+
 import type { SupportType } from './features';
 
 export const clientNames = [
@@ -50,6 +52,9 @@ interface SupportTypeResult {
   noteNumbers: number[] | undefined;
   type: 'full' | 'partial' | 'none';
 }
+
+export const parseClients = (globs: EmailClientGlobs[]) =>
+  Array.from(new Set<EmailClient>(micromatch(clientNames, globs) as any));
 
 export function getSupportType(stats: Record<string, SupportType>): SupportTypeResult {
   const statKeys = Object.keys(stats).sort((k1, k2) => {

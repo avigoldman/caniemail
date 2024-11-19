@@ -1,11 +1,9 @@
-import micromatch from 'micromatch';
-
 import { checkHtml, checkStylesheet } from './checks';
-import { clientNames, type EmailClient, type EmailClientGlobs } from './clients';
+import { parseClients, type EmailClient, type EmailClientGlobs } from './clients';
 import { FeatureMap, type FeatureIssues, type FeatureIssue } from './features';
 import { parseHtml } from './helpers';
 
-export { rawData } from './features';
+export { getAllFeatures, rawData } from './features';
 
 export interface CanIEmailOptions {
   /**
@@ -21,9 +19,15 @@ export interface CanIEmailResult {
   success: boolean;
 }
 
+interface FormatIssueOptions {
+  client: EmailClient;
+  issue: FeatureIssue;
+  issueType: 'error' | 'warning';
+}
+
 export const caniemail = ({ clients: globs, code }: CanIEmailOptions): CanIEmailResult => {
   const { document, stylesheets } = parseHtml(code);
-  const clients = Array.from(new Set<EmailClient>(micromatch(clientNames, globs) as any));
+  const clients = parseClients(globs);
   const issues: FeatureIssues = {
     errors: new FeatureMap<FeatureIssue>(),
     warnings: new FeatureMap<FeatureIssue>()
@@ -42,12 +46,6 @@ export const caniemail = ({ clients: globs, code }: CanIEmailOptions): CanIEmail
     success: issues.errors.size === 0
   };
 };
-
-interface FormatIssueOptions {
-  client: EmailClient;
-  issue: FeatureIssue;
-  issueType: 'error' | 'warning';
-}
 
 export const formatIssue = ({ client, issue, issueType }: FormatIssueOptions) => {
   const { notes, title } = issue;

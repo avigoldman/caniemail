@@ -153,7 +153,7 @@ export const checkStylesheet = ({ clients, issues, stylesheet }: CheckStylesheet
           };
         });
 
-      checkDeclarations({ clients, issues, declarations });
+      checkDeclarations({ clients, declarations, issues });
       checkSelectors({ clients, issues, selectors: rule.selectors ?? [] });
     }
 
