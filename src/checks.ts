@@ -4,7 +4,7 @@ import { getProperty } from 'dot-prop';
 import { ElementType } from 'htmlparser2';
 import styleToObject from 'style-to-object';
 
-import { getSupportType, type EmailClient } from './clients';
+import { getSupportType, type EmailClient } from './clients.js';
 import {
   getMatchingAtRuleTitles,
   getMatchingFunctionTitles,
@@ -12,14 +12,14 @@ import {
   getMatchingPropertyTitles,
   getMatchingPropertyValuePairTitles,
   getMatchingUnitTitles
-} from './css-titles';
-import { getFeatures, type FeatureIssues } from './features';
+} from './css-titles.js';
+import { getFeatures, type FeatureIssues } from './features.js';
 import {
   getMatchingAttributeTitles,
   getMatchingElementAttributePairTitles,
   getMatchingElementTitles
-} from './html-titles';
-import { getMatchingPseudoSelectorTitles, getMatchingSelectorTitles } from './selectors';
+} from './html-titles.js';
+import { getMatchingPseudoSelectorTitles, getMatchingSelectorTitles } from './selectors.js';
 
 interface BaseCheckArgs {
   clients: EmailClient[];
@@ -190,7 +190,7 @@ const checkHtmlNode = ({ clients, issues, node }: CheckHtmlNodeArgs) => {
       const styleObject = ((styleToObject as any).default ?? styleToObject)(styleAttr.value);
       if (styleObject !== null) {
         const declarations = Object.entries(styleObject).map(
-          ([property, value]) => ({ property, value } as any)
+          ([property, value]) => ({ property, value }) as any
         );
         checkDeclarations({ clients, declarations, issues });
       }

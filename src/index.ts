@@ -1,9 +1,9 @@
-import { checkHtml, checkStylesheet } from './checks';
-import { parseClients, type EmailClient, type EmailClientGlobs } from './clients';
-import { FeatureMap, type FeatureIssues, type FeatureIssue } from './features';
-import { parseHtml } from './helpers';
+import { checkHtml, checkStylesheet } from './checks.js';
+import { parseClients, type EmailClient, type EmailClientGlobs } from './clients.js';
+import { FeatureMap, type FeatureIssues, type FeatureIssue } from './features.js';
+import { parseHtml } from './helpers.js';
 
-export { getAllFeatures, rawData } from './features';
+export { getAllFeatures, rawData } from './features.js';
 
 export interface CanIEmailOptions {
   /**

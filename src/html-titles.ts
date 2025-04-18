@@ -1,5 +1,5 @@
-import { getFeatures } from './features';
-import { fromTitleEntries, getTitleMatches } from './helpers';
+import { getFeatures } from './features.js';
+import { fromTitleEntries, getTitleMatches } from './helpers.js';
 
 const features = getFeatures().html;
 const keys = [...features.keys()];

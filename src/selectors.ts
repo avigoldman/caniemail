@@ -1,8 +1,8 @@
 import * as CSSWhat from 'css-what';
 import { SelectorType } from 'css-what';
 
-import { getFeatures } from './features';
-import { fromTitleEntries, getTitleMatches } from './helpers';
+import { getFeatures } from './features.js';
+import { fromTitleEntries, getTitleMatches } from './helpers.js';
 
 type SelectorDetector = (selectors: CSSWhat.Selector[][]) => boolean;
 

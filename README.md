@@ -2,56 +2,21 @@
 
 # caniemail
 
-This package is a part of the [`jsx-email`](https://jsx.email) suite of tools.
-
-A tool for checking HTML and CSS Feature Support for Email Clients from [caniemail.com](https://caniemail.com)
+Check HTML and CSS Feature Support for Email Clients from [caniemail.com](https://caniemail.com)
 
 ## Installation
 
 Install the package from npm using your favourite package manager:
 
 ```shell
-npm install @jsx-email/doiuse-email
+pnpm add caniemail
+# yarn add caniemail
+# npm add caniemail
 ```
 
-## Programmatic Usage
+## Exports
 
-Import it and run it by calling `doIUseEmail(html: string, options: DoIUseOptions)`:
-
-```typescript
-import { doIUseEmail } from '@jsx-email/doiuse-email';
-
-const result = doIUseEmail(
-  `
-  <!doctype html>
-  <html>
-    <body>
-      <div style='background-color: orange'></div>
-    </body>
-  </html>
-  `,
-  { emailClients: ['gmail.*'] }
-);
-
-console.log(result);
-/*
-  {
-    "notes": [
-      "Note about `<body> element` support for `gmail.desktop-webmail`: Partial. Replaced by a `<div>` with supported attributes.",
-      "Note about `<body> element` support for `gmail.ios`: Partial. Replaced by a `<div>` with supported attributes.",
-      "Note about `<body> element` support for `gmail.android`: Partial. Replaced by a `<div>` with supported attributes.",
-      "Note about `<body> element` support for `gmail.mobile-webmail`: Partial. Replaced by a `<div>` with supported attributes.",
-    ],
-    "success": true,
-  }
-*/
-
-// Output is based on https://caniemail.com
-```
-
-## API
-
-### doIUseEmail(html, options)
+### caniemail(html, options)
 
 #### html
 
@@ -61,11 +26,13 @@ The HTML that represents the email.
 
 #### options
 
-##### emailClients
+##### clients
 
 Type: `string[]`
 
-An array of globs for matching email clients to be checked against the Can I Email database. For more information about the glob syntax that is used, refer to the [micromatch](https://www.npmjs.com/package/micromatch) package.
+An array of globs for matching email clients to be checked against CanIEmail data. For more information about the glob syntax that is used, refer to the [micromatch](https://www.npmjs.com/package/micromatch) documentation.
+
+To match all clients, pass `['*']`.
 
 Possible email clients:
 

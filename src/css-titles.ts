@@ -1,7 +1,7 @@
 /* eslint-disable func-names */
 
-import { getFeatures } from './features';
-import { fromTitleEntries, getTitleMatches } from './helpers';
+import { getFeatures } from './features.js';
+import { fromTitleEntries, getTitleMatches } from './helpers.js';
 
 const features = getFeatures().css;
 const keys = [...features.keys()];

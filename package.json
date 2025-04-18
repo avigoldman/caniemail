@@ -6,28 +6,21 @@
   "repository": "avigoldman/caniemail",
   "author": "Andrew Powell <andrew@shellscape.org>",
   "homepage": "https://github.com/avigoldman/caniemail#README",
-  "main": "dist/index.js",
-  "module": "dist/index.mjs",
+  "type": "module",
   "exports": {
+    "./package.json": "./package.json",
     ".": {
-      "import": {
-        "types": "./dist/index.d.mts",
-        "default": "./dist/index.mjs"
-      },
-      "require": {
-        "types": "./dist/index.d.ts",
-        "default": "./dist/index.js"
-      }
-    },
-    "./package.json": "./package.json"
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
   },
   "engines": {
-    "node": ">=18.0.0"
+    "node": ">=20.19.0"
   },
   "scripts": {
-    "build": "tsup --config ./tsup.config.ts",
+    "build": "tsc --project tsconfig.json",
     "format": "prettier --write .",
-    "lint": "eslint --cache --fix .",
+    "lint": "oxlint --format stylish --fix .",
     "prepare": "husky",
     "prepublishOnly": "pnpm build",
     "release": "versioner --no-commit-scopes --target $(pwd)",
@@ -58,28 +51,28 @@
     "@adobe/css-tools": "^4.3.1",
     "css-what": "^6.1.0",
     "domhandler": "^5.0.3",
-    "dot-prop": "^8.0.2",
-    "htmlparser2": "^9.0.0",
+    "dot-prop": "^9.0.0",
+    "htmlparser2": "^10.0.0",
     "micromatch": "^4.0.5",
-    "onetime": "^6.0.0",
+    "onetime": "^7.0.0",
     "style-to-object": "^1.0.4"
   },
   "devDependencies": {
     "@dot/versioner": "^0.4.0",
-    "@tunnel/tun": "^0.2.1",
-    "@types/css": "^0.0.35",
+    "@tunnel/tun": "^0.3.6",
+    "@types/css": "^0.0.38",
     "@types/micromatch": "^4.0.4",
-    "@types/node": "^20.8.10",
+    "@types/node": "^22.14.1",
     "desm": "^1.3.0",
-    "eslint-config-shellscape": "^6.0.2",
-    "eslint-define-config": "^1.24.1",
-    "execa": "^8.0.1",
+    "execa": "^9.5.2",
     "husky": "^9.1.6",
     "lint-staged": "^15.2.10",
     "outdent": "^0.8.0",
-    "tsup": "^7.2.0",
-    "typescript": "^5.2.2",
-    "vitest": "^2.1.3"
+    "oxlint": "^0.16.6",
+    "prettier": "^3.5.3",
+    "prettier-plugin-package": "^1.4.0",
+    "typescript": "^5.8.3",
+    "vitest": "^3.1.1"
   },
   "resolutions": {
     "domhandler": "^4"
@@ -87,7 +80,8 @@
   "types": "dist/index.d.mts",
   "lint-staged": {
     "*.{ts,tsx,js,jsx}": [
-      "eslint --fix --cache"
+      "oxlint --format stylish --fix",
+      "prettier --write"
     ],
     "**/(package|tsconfig(.*)?).json": [
       "prettier --write"
@@ -102,6 +96,6 @@
       "prettier --write"
     ]
   },
-  "packageManager": "pnpm@9.12.3+sha512.cce0f9de9c5a7c95bef944169cc5dfe8741abfb145078c0d508b868056848a87c81e626246cb60967cbd7fd29a6c062ef73ff840d96b3c86c40ac92cf4a813ee",
+  "packageManager": "pnpm@9.15.9",
   "root": true
 }

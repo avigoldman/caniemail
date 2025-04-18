@@ -1,6 +1,6 @@
 import micromatch from 'micromatch';
 
-import type { SupportType } from './features';
+import type { SupportType } from './json.cjs';
 
 export const clientNames = [
   'apple-mail.macos',
