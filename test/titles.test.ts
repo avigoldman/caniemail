@@ -7,9 +7,9 @@ import {
   propertyTitles,
   propertyValuePairTitles,
   unitTitles
-} from '../src/css-titles.js';
-import { attributeTitles, elementAttributePairTitles, elementTitles } from '../src/html-titles.js';
-import { psuedoSelectorTitles, selectorTitles } from '../src/selectors.js';
+} from '../dist/css-titles.js';
+import { attributeTitles, elementAttributePairTitles, elementTitles } from '../dist/html-titles.js';
+import { psuedoSelectorTitles, selectorTitles } from '../dist/selectors.js';
 
 describe('css', () => {
   Object.entries({

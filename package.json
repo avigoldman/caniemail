@@ -21,10 +21,12 @@
     "build": "tsc --project tsconfig.json",
     "format": "prettier --write .",
     "lint": "oxlint --format stylish --fix .",
+    "postbuild": "cp -r src/data dist",
     "prepare": "husky",
     "prepublishOnly": "pnpm build",
+    "pretest": "pnpm build",
     "release": "versioner --no-commit-scopes --target $(pwd)",
-    "test": "vitest run",
+    "test": "vitest run test/all-features.ts",
     "typecheck": "tsc --noEmit"
   },
   "files": [
@@ -72,7 +74,7 @@
     "prettier": "^3.5.3",
     "prettier-plugin-package": "^1.4.0",
     "typescript": "^5.8.3",
-    "vitest": "^3.1.1"
+    "vitest": "^2.1.3"
   },
   "resolutions": {
     "domhandler": "^4"

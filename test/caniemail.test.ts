@@ -1,7 +1,7 @@
 import { outdent } from 'outdent';
 import { describe, expect, test } from 'vitest';
 
-import { caniemail } from '../src/index.js';
+import { caniemail } from '../dist/index.js';
 
 describe('check() works', () => {
   test('works with blank email template', () => {
