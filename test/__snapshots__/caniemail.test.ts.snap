@@ -34,6 +34,40 @@ exports[`check() works > fails with unsupported class selectors 1`] = `
 }
 `;
 
+exports[`check() works > parses CSS 1`] = `
+{
+  "issues": {
+    "errors": Map {
+      "gmail.mobile-webmail" => [
+        {
+          "notes": [],
+          "title": "Class selector",
+        },
+      ],
+    },
+    "warnings": Map {
+      "gmail.ios" => [
+        {
+          "notes": [
+            "Partial. Not supported with non Google accounts.",
+          ],
+          "title": "Class selector",
+        },
+      ],
+      "gmail.android" => [
+        {
+          "notes": [
+            "Partial. Not supported with non Google accounts.",
+          ],
+          "title": "Class selector",
+        },
+      ],
+    },
+  },
+  "success": false,
+}
+`;
+
 exports[`check() works > parses inline CSS 1`] = `
 {
   "issues": {
@@ -124,6 +158,23 @@ exports[`check() works > should fail on unsupported inline-style features 1`] = 
         },
       ],
     },
+  },
+  "success": false,
+}
+`;
+
+exports[`check() works > should fail on unsupported inline-style features, only css 1`] = `
+{
+  "issues": {
+    "errors": Map {
+      "gmail.desktop-webmail" => [
+        {
+          "notes": [],
+          "title": "flex-direction:column",
+        },
+      ],
+    },
+    "warnings": Map {},
   },
   "success": false,
 }

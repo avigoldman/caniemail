@@ -1,3 +1,4 @@
+import { inspect } from 'node:util';
 import { outdent } from 'outdent';
 import { describe, expect, test } from 'vitest';
 
@@ -6,14 +7,20 @@ import { caniemail } from '../dist/index.js';
 describe('check() works', () => {
   test('works with blank email template', () => {
     const code = outdent`
-			<!doctype html>
-			<html>
-				<body>
-				</body>
-			</html>
-		`;
-    const result = caniemail({ clients: ['gmail.*'], code });
+  	<!doctype html>
+  	<html>
+  		<body>
+  		</body>
+  	</html>
+  `;
+    const result = caniemail({ clients: ['gmail.*'], html: code });
     expect(result.success).toEqual(true);
+    expect(result).toMatchSnapshot();
+  });
+
+  test('parses CSS', () => {
+    const code = `.test { background-color: orange }`;
+    const result = caniemail({ clients: ['gmail.*'], css: code });
     expect(result).toMatchSnapshot();
   });
 
@@ -26,7 +33,7 @@ describe('check() works', () => {
   		</body>
   	</html>
   `;
-    const result = caniemail({ clients: ['gmail.*'], code });
+    const result = caniemail({ clients: ['gmail.*'], html: code });
     expect(result.success).toEqual(true);
     expect(result).toMatchSnapshot();
   });
@@ -48,7 +55,15 @@ describe('check() works', () => {
   		</body>
   	</html>
   `;
-    const result = caniemail({ clients: ['gmail.desktop-webmail'], code });
+    const result = caniemail({ clients: ['gmail.desktop-webmail'], html: code });
+    expect(result.success).toEqual(false);
+    expect(result).toMatchSnapshot();
+  });
+
+  test('should fail on unsupported inline-style features, only css', () => {
+    // `flex-direction: column` isn't supported by Gmail: https://www.caniemail.com/features/css-flex-direction/
+    const code = `.test { flex-direction: column }`;
+    const result = caniemail({ clients: ['gmail.desktop-webmail'], css: code });
     expect(result.success).toEqual(false);
     expect(result).toMatchSnapshot();
   });
@@ -63,7 +78,7 @@ describe('check() works', () => {
   		</body>
   	</html>
   `;
-    const result = caniemail({ clients: ['gmail.desktop-webmail'], code });
+    const result = caniemail({ clients: ['gmail.desktop-webmail'], html: code });
     expect(result.success).toEqual(false);
     expect(result).toMatchSnapshot();
   });
@@ -86,7 +101,7 @@ describe('check() works', () => {
   		</body>
   	</html>
   `;
-    const result = caniemail({ clients: ['gmail.desktop-webmail'], code });
+    const result = caniemail({ clients: ['gmail.desktop-webmail'], html: code });
     expect(result.success).toEqual(true);
     expect(result).toMatchSnapshot();
   });
@@ -105,7 +120,7 @@ describe('check() works', () => {
   			</body>
   		</html>
   	`;
-      const result = caniemail({ clients: ['gmail.ios'], code });
+      const result = caniemail({ clients: ['gmail.ios'], html: code });
       expect(result.success).toEqual(false);
       expect(result).toMatchSnapshot();
     }
@@ -118,7 +133,7 @@ describe('check() works', () => {
   			<div>world!</div>
   		</div>
   	`;
-      const result = caniemail({ clients: ['outlook.windows'], code });
+      const result = caniemail({ clients: ['outlook.windows'], html: code });
       expect(result.success).toEqual(false);
       expect(result).toMatchSnapshot();
     }
@@ -130,7 +145,7 @@ describe('check() works', () => {
   	<style></style>
   	<div style=''></div>
   `;
-    const result = caniemail({ clients: ['gmail.ios'], code });
+    const result = caniemail({ clients: ['gmail.ios'], html: code });
     expect(result.success).toEqual(true);
     expect(result).toMatchSnapshot();
   });
@@ -143,7 +158,7 @@ describe('check() works', () => {
   	</style>
   	<div class='a'></div>
   `;
-    const result = caniemail({ clients: ['gmail.mobile-webmail'], code });
+    const result = caniemail({ clients: ['gmail.mobile-webmail'], html: code });
     expect(result.success).toEqual(false);
     expect(result).toMatchSnapshot();
   });
@@ -156,7 +171,7 @@ describe('check() works', () => {
   	</style>
   	<div class='a'></div>
   `;
-    const result = caniemail({ clients: ['outlook.windows'], code });
+    const result = caniemail({ clients: ['outlook.windows'], html: code });
     expect(result.success).toEqual(false);
     expect(result).toMatchSnapshot();
   });

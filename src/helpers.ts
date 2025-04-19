@@ -18,7 +18,7 @@ export function fromTitleEntries<T>(
 export const getTitleMatches = (
   pairs: Record<string, any>,
   targetValue: string | string[],
-  comparer?: (value: any, targetValue: string | string[]) => Boolean
+  comparer?: (value: any, targetValue: string | string[]) => boolean
 ): string[] =>
   Object.entries(pairs)
     .filter(([, value]) => (comparer ? comparer(value, targetValue) : targetValue.includes(value)))
@@ -38,7 +38,9 @@ const getStyleNodes = (node: Node) => {
   return results;
 };
 
-export function parseHtml(html: string): ParseHtmlResult {
+export const parseCss = (cssContent: string) => css.parse(cssContent);
+
+export const parseHtml = (html: string): ParseHtmlResult => {
   const document = htmlparser.parseDocument(html);
 
   const styleNodes: Element[] = [];
@@ -50,7 +52,7 @@ export function parseHtml(html: string): ParseHtmlResult {
   for (const styleNode of styleNodes) {
     const styleTextNode = styleNode.childNodes[0] as Text | undefined;
     if (styleTextNode !== void 0) {
-      stylesheets.push(css.parse(styleTextNode.data));
+      stylesheets.push(parseCss(styleTextNode.data));
     }
   }
 
@@ -58,4 +60,4 @@ export function parseHtml(html: string): ParseHtmlResult {
     document,
     stylesheets
   };
-}
+};

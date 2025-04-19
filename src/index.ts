@@ -1,7 +1,10 @@
+import type { CssStylesheetAST } from '@adobe/css-tools';
+import type { Document } from 'domhandler';
+
 import { checkHtml, checkStylesheet } from './checks.js';
 import { parseClients, type EmailClient, type EmailClientGlobs } from './clients.js';
 import { FeatureMap, type FeatureIssues, type FeatureIssue } from './features.js';
-import { parseHtml } from './helpers.js';
+import { parseCss, parseHtml } from './helpers.js';
 
 export { getAllFeatures, rawData } from './features.js';
 
@@ -11,7 +14,8 @@ export interface CanIEmailOptions {
 		Example: ['gmail.android', 'outlook.*', '*.ios']
 	*/
   clients: EmailClientGlobs[];
-  code: string;
+  css?: string;
+  html?: string;
 }
 
 export interface CanIEmailResult {
@@ -25,21 +29,26 @@ interface FormatIssueOptions {
   issueType: 'error' | 'warning';
 }
 
-export const caniemail = ({ clients: globs, code }: CanIEmailOptions): CanIEmailResult => {
-  const { document, stylesheets } = parseHtml(code);
+export const caniemail = ({ clients: globs, css, html }: CanIEmailOptions): CanIEmailResult => {
+  if (!css && !html) throw new RangeError('Please provide either `code` or `html` options');
+
+  let document: Document | null = null;
+  let stylesheets: CssStylesheetAST[] = [];
+
   const clients = parseClients(globs);
   const issues: FeatureIssues = {
     errors: new FeatureMap<FeatureIssue>(),
     warnings: new FeatureMap<FeatureIssue>()
   };
 
-  if (clients.length === 0) {
+  if (!clients.length)
     throw new RangeError(`The specified email client(s) (${globs.join(', ')}) were not found`);
-  }
+  if (css) stylesheets.push(parseCss(css));
+  if (html) ({ document, stylesheets } = parseHtml(html));
 
   for (const stylesheet of stylesheets) checkStylesheet({ clients, issues, stylesheet });
 
-  checkHtml({ clients, document, issues });
+  if (document) checkHtml({ clients, document, issues });
 
   return {
     issues,
