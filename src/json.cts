@@ -1,5 +1,3 @@
-// Note: This is due to Node v20 and Node v22 diverging on `with 'json'` and `assert 'json'` on importing
-
 export type SupportType = string;
 
 export interface RawFeatureStats {
@@ -76,5 +74,5 @@ export interface CanIEmailJson {
   nice_names: any;
 }
 
-// eslint-disable-next-line
-export const caniEmailJson = require('./data/can-i-email.json') as CanIEmailJson;
+// Note: This is due to Node v20 and Node v22 diverging on `with 'json'` and `assert 'json'` on importing JSON
+export const caniEmailJson = require('../data/caniemail.json') as CanIEmailJson;

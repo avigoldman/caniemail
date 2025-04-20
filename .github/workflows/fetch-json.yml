@@ -8,5 +8,18 @@ jobs:
   publish-npm:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - run: ./scripts/update-data.sh
+      - name: Checkout Commit
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 10
+
+      - name: Checkout Main
+        run: |
+          git fetch origin
+          git branch -f main origin/main
+
+      - name: Setup
+        uses: ./.github/actions/setup
+
+      - name: Fetch
+        run: ./scripts/update-data.sh

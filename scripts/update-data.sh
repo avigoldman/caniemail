@@ -11,17 +11,18 @@ if [[ ! $API_VERSION =~ ^1\. ]]; then
 fi
 
 parse_date() {
-    date -u -d "$1" +%s
+  date -u -d "$1" +%s
 }
 
 REMOTE_DATE=$(jq -r '.last_update_date' "$TEMP_FILE")
-LOCAL_DATE=$(jq -r '.last_update_date' data/caniemail.json)
+LOCAL_DATE=$(jq -r '.last_update_date' src/data/caniemail.json)
 REMOTE_TIMESTAMP=$(parse_date "$REMOTE_DATE")
 LOCAL_TIMESTAMP=$(parse_date "$LOCAL_DATE")
 
 if [ "$REMOTE_TIMESTAMP" -gt "$LOCAL_TIMESTAMP" ]; then
-  cp "$TEMP_FILE" data/caniemail.json
-  git add data/caniemail.json
+  cp "$TEMP_FILE" src/data/caniemail.json
+  pnpm test
+  git src/add data/caniemail.json
   git commit -m "chore: update caniemail.json"
   git push
 fi

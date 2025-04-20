@@ -13,10 +13,10 @@
     "lib": ["ES2023", "ESNext"],
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
+    "noEmit": true,
     "noEmitOnError": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "outDir": "dist",
     "preserveSymlinks": true,
     "preserveWatchOutput": true,
     "resolveJsonModule": true,
@@ -29,5 +29,5 @@
     "useUnknownInCatchVariables": false
   },
   "exclude": ["**/dist", "**/node_modules"],
-  "include": ["src"]
+  "include": ["data", "src", "vitest.config.ts"]
 }

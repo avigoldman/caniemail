@@ -1,8 +1,27 @@
-import { inspect } from 'node:util';
 import { outdent } from 'outdent';
 import { describe, expect, test } from 'vitest';
 
 import { caniemail } from '../dist/index.js';
+
+describe('exports', () => {
+  test('data', async () => {
+    // @ts-ignore
+    const json = await import('caniemail/caniemail.json');
+    expect(json).toBeTruthy();
+  });
+
+  test('package.json', async () => {
+    // @ts-ignore
+    const json = await import('caniemail/package.json');
+    expect(json).toBeTruthy();
+  });
+
+  test('caniemail', async () => {
+    // @ts-ignore
+    const caniemail = await import('caniemail');
+    expect(caniemail).toBeTruthy();
+  });
+});
 
 describe('check() works', () => {
   test('works with blank email template', () => {

@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "compilerOptions": {
+    "noEmit": false,
+    "outDir": "dist"
+  },
+  "extends": "./tsconfig.json",
+  "include": ["data", "src"]
+}

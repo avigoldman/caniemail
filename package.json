@@ -8,6 +8,7 @@
   "homepage": "https://github.com/avigoldman/caniemail#README",
   "type": "module",
   "exports": {
+    "./caniemail.json": "./data/caniemail.json",
     "./package.json": "./package.json",
     ".": {
       "types": "./dist/index.d.ts",
@@ -18,19 +19,21 @@
     "node": ">=20.19.0"
   },
   "scripts": {
-    "build": "tsc --project tsconfig.json",
+    "build": "tsc --project tsconfig.build.json",
     "format": "prettier --write .",
     "lint": "oxlint --format stylish --fix .",
-    "postbuild": "cp -r src/data dist",
+    "postbuild": "cp -r ./data dist",
     "prepare": "husky",
     "prepublishOnly": "pnpm build",
     "pretest": "pnpm build",
     "release": "versioner --no-commit-scopes --target $(pwd)",
-    "test": "vitest run",
+    "test": "vitest run --config ./vitest.config.ts",
     "typecheck": "tsc --noEmit"
   },
   "files": [
-    "dist/**"
+    "data",
+    "dist/**",
+    "README"
   ],
   "keywords": [
     "caniemail",
@@ -79,7 +82,7 @@
   "resolutions": {
     "domhandler": "^4"
   },
-  "types": "dist/index.d.mts",
+  "types": "dist/index.d.ts",
   "lint-staged": {
     "*.{ts,tsx,js,jsx}": [
       "oxlint --format stylish --fix",
