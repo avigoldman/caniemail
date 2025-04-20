@@ -1,6 +1,6 @@
 {
   "api_version": "1.0.4",
-  "last_update_date": "2024-10-09 08:12:03 +0000",
+  "last_update_date": "2024-11-29 15:25:23 +0000",
   "nicenames": {
     "family": {
       "gmail": "Gmail",
@@ -3143,6 +3143,82 @@
     },
 
     {
+      "slug": "css-clear",
+      "title": "clear",
+      "description": "Sets whether an element must be moved below (cleared) floating elements that precede it.",
+      "url": "https://www.caniemail.com/features/css-clear/",
+      "category": "css",
+      "tags": [],
+      "keywords": null,
+      "last_test_date": "2024-09-06",
+      "test_url": "https://www.caniemail.com/tests/css-box-model.html",
+      "test_results_url": "https://testi.at/proj/gyjkc98dtyzxfd3bhz",
+      "stats": {
+        "apple-mail": { "macos": { "11": "a #1", "12": "y" }, "ios": { "14": "a #1", "15": "y" } },
+        "gmail": {
+          "desktop-webmail": { "2024-09": "y" },
+          "ios": { "13": "a #2", "16": "y" },
+          "android": { "2024-09": "a #1" },
+          "mobile-webmail": { "2024-09": "u" }
+        },
+        "orange": {
+          "desktop-webmail": { "2024-09": "u" },
+          "ios": { "2024-09": "u" },
+          "android": { "2024-09": "u" }
+        },
+        "outlook": {
+          "windows": { "2007": "n", "2010": "n", "2013": "n", "2016": "n", "2019": "n" },
+          "windows-mail": { "2024-09": "n" },
+          "macos": { "2024-09": "u" },
+          "outlook-com": { "2024-09": "y" },
+          "ios": { "2024-09": "y" },
+          "android": { "2024-09": "a #1" }
+        },
+        "yahoo": {
+          "desktop-webmail": { "2024-09": "a #1" },
+          "ios": { "2024-09": "a #1" },
+          "android": { "2024-09": "a #1" }
+        },
+        "aol": {
+          "desktop-webmail": { "2024-09": "a #1" },
+          "ios": { "2024-09": "a #1" },
+          "android": { "2024-09": "a #1" }
+        },
+        "samsung-email": { "android": { "2024-09": "y" } },
+        "sfr": {
+          "desktop-webmail": { "2024-09": "u" },
+          "ios": { "2024-09": "u" },
+          "android": { "2024-09": "u" }
+        },
+        "thunderbird": { "macos": { "2024-09": "u" } },
+        "protonmail": {
+          "desktop-webmail": { "2024-09": "y" },
+          "ios": { "2024-09": "u" },
+          "android": { "2024-09": "u" }
+        },
+        "hey": { "desktop-webmail": { "2024-09": "u" } },
+        "mail-ru": { "desktop-webmail": { "2024-09": "y" } },
+        "fastmail": { "desktop-webmail": { "2024-09": "u" } },
+        "laposte": { "desktop-webmail": { "2024-09": "u" } },
+        "gmx": {
+          "desktop-webmail": { "2024-09": "a #1" },
+          "ios": { "2024-09": "u" },
+          "android": { "2024-09": "u" }
+        },
+        "web-de": {
+          "desktop-webmail": { "2024-09": "a #1" },
+          "ios": { "2024-09": "u" },
+          "android": { "2024-09": "u" }
+        },
+        "ionos-1and1": { "desktop-webmail": { "2024-09": "u" }, "android": { "2024-09": "u" } }
+      },
+      "notes": null,
+      "notes_by_num": {
+        "1": "Partial. Logical property values `inline-start` and `inline-end` are not supported."
+      }
+    },
+
+    {
       "slug": "css-clip-path",
       "title": "clip-path",
       "description": "",
@@ -4640,7 +4716,7 @@
       "keywords": null,
       "last_test_date": "2019-02-28",
       "test_url": "https://www.caniemail.com/tests/css-text.html",
-      "test_results_url": "https: //app.emailonacid.com/app/acidtest/DkqbHs69ek5UnK6uhZ7Uj0n5GVQNTP4Z1FvgXvnKyEoTM/list",
+      "test_results_url": "https://app.emailonacid.com/app/acidtest/DkqbHs69ek5UnK6uhZ7Uj0n5GVQNTP4Z1FvgXvnKyEoTM/list",
       "stats": {
         "apple-mail": { "macos": { "12.4": "y" }, "ios": { "12.1": "y" } },
         "gmail": {
@@ -5655,7 +5731,7 @@
           "android": { "2024-05": "u" }
         },
         "outlook": {
-          "windows": { "2013": "n", "2016": "n", "2019": "n" },
+          "windows": { "2024-05": "n" },
           "windows-mail": { "2024-05": "n" },
           "macos": { "2024-05": "n" },
           "outlook-com": { "2024-05": "n" },
@@ -6901,6 +6977,82 @@
         "3": "Buggy. `background-color` is included inside the `margin`.",
         "4": "Partial. `auto` value is not supported."
       }
+    },
+
+    {
+      "slug": "css-mask-image",
+      "title": "mask-image",
+      "description": "Sets the image that is used as mask layer for an element",
+      "url": "https://www.caniemail.com/features/css-mask-image/",
+      "category": "css",
+      "tags": [],
+      "keywords": null,
+      "last_test_date": "2024-11-27",
+      "test_url": "https://www.caniemail.com/tests/css-mask-image.html",
+      "test_results_url": "https://testi.at/proj/x9aotv8ysvn805531p",
+      "stats": {
+        "apple-mail": {
+          "macos": { "10": "n", "11": "n", "12": "y", "13": "y", "14": "y", "15": "y" },
+          "ios": { "11": "n", "12": "n", "13": "n", "14": "n", "15": "y", "16": "y", "17": "y" }
+        },
+        "gmail": {
+          "desktop-webmail": { "2024-11": "n" },
+          "ios": { "2024-11": "n" },
+          "android": { "2024-11": "n" },
+          "mobile-webmail": { "2024-11": "n" }
+        },
+        "orange": {
+          "desktop-webmail": { "2024-11": "u" },
+          "ios": { "2024-11": "u" },
+          "android": { "2024-11": "u" }
+        },
+        "outlook": {
+          "windows": { "2013": "n", "2016": "n", "2019": "n", "2021": "n", "2024": "n" },
+          "windows-mail": { "2024-11": "n" },
+          "macos": { "2024-11": "y" },
+          "outlook-com": { "2024-11": "n" },
+          "ios": { "2024-11": "n" },
+          "android": { "2024-11": "n" }
+        },
+        "yahoo": {
+          "desktop-webmail": { "2024-11": "n" },
+          "ios": { "2024-11": "n" },
+          "android": { "2024-11": "n" }
+        },
+        "aol": {
+          "desktop-webmail": { "2024-11": "n" },
+          "ios": { "2024-11": "n" },
+          "android": { "2024-11": "n" }
+        },
+        "samsung-email": { "android": { "2024-11": "y" } },
+        "sfr": {
+          "desktop-webmail": { "2024-03": "u" },
+          "ios": { "2024-03": "u" },
+          "android": { "2024-03": "u" }
+        },
+        "protonmail": {
+          "desktop-webmail": { "2024-11": "u" },
+          "ios": { "2024-11": "u" },
+          "android": { "2024-11": "u" }
+        },
+        "hey": { "desktop-webmail": { "2024-11": "u" } },
+        "mail-ru": { "desktop-webmail": { "2024-11": "y" } },
+        "fastmail": { "desktop-webmail": { "2024-11": "u" } },
+        "laposte": { "desktop-webmail": { "2024-11": "u" } },
+        "gmx": {
+          "desktop-webmail": { "2024-11": "n" },
+          "ios": { "2024-11": "u" },
+          "android": { "2024-11": "u" }
+        },
+        "web-de": {
+          "desktop-webmail": { "2024-11": "n" },
+          "ios": { "2024-11": "u" },
+          "android": { "2024-11": "u" }
+        },
+        "ionos-1and1": { "desktop-webmail": { "2024-11": "u" }, "android": { "2024-11": "u" } }
+      },
+      "notes": null,
+      "notes_by_num": null
     },
 
     {
@@ -8249,46 +8401,49 @@
     {
       "slug": "css-overflow",
       "title": "overflow",
-      "description": "",
+      "description": "Sets the desired behavior when content does not fit in the element's padding box",
       "url": "https://www.caniemail.com/features/css-overflow/",
       "category": "css",
       "tags": [],
       "keywords": null,
-      "last_test_date": "2019-02-28",
+      "last_test_date": "2024-10-02",
       "test_url": "https://www.caniemail.com/tests/css-box-model.html",
-      "test_results_url": "https://app.emailonacid.com/app/acidtest/pyPQFHSYLFrhbRShalju0B2fYNwUgLuyKTLx4MLqiw5mE/list",
+      "test_results_url": "https://testi.at/proj/p4rru3ez069p15p6ij",
       "stats": {
-        "apple-mail": { "macos": { "12.4": "a #1" }, "ios": { "12.1": "y" } },
+        "apple-mail": {
+          "macos": { "12.4": "a #1", "2024-10": "a #4" },
+          "ios": { "12.1": "y", "2024-10": "a #4" }
+        },
         "gmail": {
-          "desktop-webmail": { "2019-02": "y" },
-          "ios": { "2019-02": "y" },
-          "android": { "2019-02": "y" },
-          "mobile-webmail": { "2020-02": "y" }
+          "desktop-webmail": { "2019-02": "y", "2024-10": "a #4" },
+          "ios": { "2019-02": "y", "2024-10": "a #4" },
+          "android": { "2019-02": "y", "2024-10": "a #4" },
+          "mobile-webmail": { "2020-02": "y", "2024-10": "a #4" }
         },
         "orange": {
-          "desktop-webmail": { "2019-08": "n #2", "2021-03": "y" },
+          "desktop-webmail": { "2019-08": "n #2", "2021-03": "y", "2024-10": "a #3" },
           "ios": { "2019-08": "y" },
           "android": { "2019-08": "y" }
         },
         "outlook": {
-          "windows": { "2007": "n", "2010": "n", "2013": "n", "2016": "n", "2019": "n" },
+          "windows": { "2013": "n", "2016": "n", "2019": "n", "2021": "n" },
           "windows-mail": { "2019-02": "n" },
-          "macos": { "2019-02": "y", "16.80": "y" },
-          "outlook-com": { "2019-02": "y", "2024-01": "y" },
-          "ios": { "2019-02": "y" },
+          "macos": { "2019-02": "y", "16.80": "y", "2024-10": "a #4" },
+          "outlook-com": { "2019-02": "y", "2024-01": "y", "2024-10": "a #3" },
+          "ios": { "2019-02": "y", "2024-10": "a #4" },
           "android": { "2019-02": "n" }
         },
         "yahoo": {
           "desktop-webmail": { "2019-02": "y" },
-          "ios": { "2019-02": "y" },
+          "ios": { "2019-02": "y", "2024-10": "a #4" },
           "android": { "2019-02": "n" }
         },
         "aol": {
-          "desktop-webmail": { "2019-02": "y" },
-          "ios": { "2019-02": "y" },
-          "android": { "2019-02": "y" }
+          "desktop-webmail": { "2019-02": "y", "2024-10": "a #4" },
+          "ios": { "2019-02": "y", "2024-10": "a #4" },
+          "android": { "2019-02": "n" }
         },
-        "samsung-email": { "android": { "5.0.10.2": "y" } },
+        "samsung-email": { "android": { "5.0.10.2": "y", "2024-10": "a #4" } },
         "sfr": {
           "desktop-webmail": { "2019-08": "y" },
           "ios": { "2019-08": "y" },
@@ -8301,25 +8456,27 @@
           "android": { "2020-03": "y" }
         },
         "hey": { "desktop-webmail": { "2020-06": "y" } },
-        "mail-ru": { "desktop-webmail": { "2020-10": "y" } },
+        "mail-ru": { "desktop-webmail": { "2020-10": "y", "2024-10": "a #3" } },
         "fastmail": { "desktop-webmail": { "2021-07": "y" } },
         "laposte": { "desktop-webmail": { "2021-08": "y" } },
         "gmx": {
-          "desktop-webmail": { "2022-06": "y" },
-          "ios": { "2022-06": "y" },
-          "android": { "2022-06": "y" }
+          "desktop-webmail": { "2022-06": "y", "2024-10": "a #3" },
+          "ios": { "2022-06": "y", "2024-10": "a #3" },
+          "android": { "2022-06": "y", "2024-10": "a #3" }
         },
         "web-de": {
-          "desktop-webmail": { "2022-06": "y" },
-          "ios": { "2022-06": "y" },
-          "android": { "2022-06": "y" }
+          "desktop-webmail": { "2022-06": "y", "2024-10": "a #3" },
+          "ios": { "2022-06": "y", "2024-10": "a #3" },
+          "android": { "2022-06": "y", "2024-10": "a #3" }
         },
         "ionos-1and1": { "desktop-webmail": { "2022-06": "y" }, "android": { "2022-06": "y" } }
       },
       "notes": null,
       "notes_by_num": {
         "1": "Buggy. Cannot scroll through to hidden content.",
-        "2": "Not supported. `overflow` is replaced by `java-script`."
+        "2": "Not supported. `overflow` is replaced by `java-script`.",
+        "3": "Partial. Support for `overflow-block` & `overflow-inline` depends on browser support.",
+        "4": "Partial. `overflow-block` & `overflow-inline` not supported."
       }
     },
 
@@ -13014,8 +13171,8 @@
       "tags": [],
       "keywords": "underline",
       "last_test_date": "2019-02-28",
-      "test_url": "https://www.caniemail.com/tests/css-text.html",
-      "test_results_url": "https: //app.emailonacid.com/app/acidtest/DkqbHs69ek5UnK6uhZ7Uj0n5GVQNTP4Z1FvgXvnKyEoTM/list",
+      "test_url": "https://www.caniemail.com/tests/css-text-decoration.html",
+      "test_results_url": "https://app.emailonacid.com/app/acidtest/3r2uYHjW7RohepVjh05qVkSQ9t7gJVJd6O5ABI8grFvqQ/list",
       "stats": {
         "apple-mail": { "macos": { "12.4": "y" }, "ios": { "12.1": "y" } },
         "gmail": {
@@ -21629,7 +21786,7 @@
       "keywords": null,
       "last_test_date": "2019-02-28",
       "test_url": "https://www.caniemail.com/tests/css-text.html",
-      "test_results_url": "https: //app.emailonacid.com/app/acidtest/DkqbHs69ek5UnK6uhZ7Uj0n5GVQNTP4Z1FvgXvnKyEoTM/list",
+      "test_results_url": "https://app.emailonacid.com/app/acidtest/DkqbHs69ek5UnK6uhZ7Uj0n5GVQNTP4Z1FvgXvnKyEoTM/list",
       "stats": {
         "apple-mail": { "macos": { "12.4": "y" }, "ios": { "12.1": "y" } },
         "gmail": {
