@@ -72,7 +72,7 @@ export const groupIssues = (issues: FeatureMap<FeatureIssue>): IssueGroup[] => {
 export const parseCss = (cssContent: string) => css.parse(cssContent);
 
 export const parseHtml = (html: string): ParseHtmlResult => {
-  const document = htmlparser.parseDocument(html);
+  const document = htmlparser.parseDocument(html, { withStartIndices: true, withEndIndices: true });
 
   const styleNodes: Element[] = [];
   for (const childNode of document.childNodes) {

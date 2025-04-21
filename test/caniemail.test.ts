@@ -2,6 +2,8 @@ import { outdent } from 'outdent';
 import { describe, expect, test } from 'vitest';
 
 import { caniemail } from '../dist/index.js';
+import { readFile } from 'node:fs/promises';
+import { join } from 'node:path';
 
 describe('exports', () => {
   test('data', async () => {
@@ -193,5 +195,15 @@ describe('check() works', () => {
     const result = caniemail({ clients: ['outlook.windows'], html: code });
     expect(result.success).toEqual(false);
     expect(result).toMatchSnapshot();
+  });
+});
+
+describe('check() file', () => {
+  test('fixture html file', async () => {
+    const html = await readFile(join(__dirname, './fixtures/email.html'), 'utf8');
+    const clients = ['apple-mail.*', 'gmail.*', 'outlook.*', 'protonmail.*', 'hey.*', 'fastmail.*'];
+    const results = caniemail({ clients: clients as any, html });
+
+    expect(results).toMatchSnapshot();
   });
 });

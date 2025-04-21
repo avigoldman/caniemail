@@ -49,7 +49,7 @@ export const caniemail = ({ clients: globs, css, html }: CanIEmailOptions): CanI
 
   for (const stylesheet of stylesheets) checkStylesheet({ clients, issues, stylesheet });
 
-  if (document) checkHtml({ clients, document, issues });
+  if (document) checkHtml({ clients, document, issues, source: html! });
 
   return {
     issues,

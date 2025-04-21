@@ -20,6 +20,7 @@ import {
   getMatchingElementTitles
 } from './html-titles.js';
 import { getMatchingPseudoSelectorTitles, getMatchingSelectorTitles } from './selectors.js';
+import { LocationIndex } from './location.js';
 
 interface BaseCheckArgs {
   clients: EmailClient[];
@@ -40,6 +41,7 @@ interface CheckDeclarationsArgs extends BaseCheckArgs {
 
 interface CheckHtmlArgs extends BaseCheckArgs {
   document: Document;
+  source: string;
 }
 
 interface CheckHtmlNodeArgs extends BaseCheckArgs {
@@ -193,53 +195,18 @@ const checkSelectors = ({ clients, issues, selectors, position, offset }: CheckS
   }
 };
 
-export const checkStylesheet = ({ clients, issues, stylesheet, offset }: CheckStylesheetArgs) => {
-  const matchedAtRules: string[] = [];
-  for (const stylesheetRule of stylesheet.stylesheet?.rules ?? []) {
-    if (stylesheetRule.type === 'rule') {
-      const rule = stylesheetRule;
-      const declarations = (rule.declarations ?? [])
-        .filter((declaration) => declaration.type !== 'comment')
-        .map((declaration) => ({
-          property: declaration.property,
-          value: declaration.value,
-          position: declaration.position ? { ...declaration.position } : undefined
-        }));
-
-      checkDeclarations({ clients, declarations, issues, offset });
-      checkSelectors({
-        clients,
-        issues,
-        selectors: rule.selectors ?? [],
-        position: rule.position ? { ...rule.position } : undefined,
-        offset
-      });
-    }
-
-    if (atRules.has(stylesheetRule.type)) {
-      matchedAtRules.push(stylesheetRule.type);
-    }
-  }
-
-  const atRuleTitles = getMatchingAtRuleTitles({ atRules: matchedAtRules });
-  checkFeatures({ clients, issues, titles: atRuleTitles });
-};
-
-const checkHtmlNode = ({ clients, issues, node }: CheckHtmlNodeArgs) => {
+const checkHtmlNode = ({
+  clients,
+  issues,
+  node,
+  locationIndex
+}: CheckHtmlNodeArgs & { locationIndex: LocationIndex }) => {
   const elementTitles = getMatchingElementTitles({ tagName: node.tagName });
-  const sourceCodeLocation = (node as any).sourceCodeLocation;
-  const position = sourceCodeLocation
-    ? {
-        start: {
-          line: sourceCodeLocation.startLine,
-          column: sourceCodeLocation.startCol
-        },
-        end: {
-          line: sourceCodeLocation.endLine,
-          column: sourceCodeLocation.endCol
-        }
-      }
-    : undefined;
+  const position =
+    (node as any).sourceCodeLocation ||
+    (node.startIndex !== null && node.endIndex !== null
+      ? locationIndex.positionOf(node.startIndex, node.endIndex)
+      : undefined);
 
   checkFeatures({ clients, issues, titles: elementTitles, position });
 
@@ -281,16 +248,50 @@ const checkHtmlNode = ({ clients, issues, node }: CheckHtmlNodeArgs) => {
   if ('childNodes' in node) {
     for (const childNode of node.childNodes) {
       if (childNode.type === ElementType.Tag) {
-        checkHtmlNode({ clients, issues, node: childNode as Element });
+        checkHtmlNode({ clients, issues, node: childNode as Element, locationIndex });
       }
     }
   }
 };
 
-export const checkHtml = ({ clients, issues, document }: CheckHtmlArgs) => {
+export const checkStylesheet = ({ clients, issues, stylesheet, offset }: CheckStylesheetArgs) => {
+  const matchedAtRules: string[] = [];
+  for (const stylesheetRule of stylesheet.stylesheet?.rules ?? []) {
+    if (stylesheetRule.type === 'rule') {
+      const rule = stylesheetRule;
+      const declarations = (rule.declarations ?? [])
+        .filter((declaration) => declaration.type !== 'comment')
+        .map((declaration) => ({
+          property: declaration.property,
+          value: declaration.value,
+          position: declaration.position ? { ...declaration.position } : undefined
+        }));
+
+      checkDeclarations({ clients, declarations, issues, offset });
+      checkSelectors({
+        clients,
+        issues,
+        selectors: rule.selectors ?? [],
+        position: rule.position ? { ...rule.position } : undefined,
+        offset
+      });
+    }
+
+    if (atRules.has(stylesheetRule.type)) {
+      matchedAtRules.push(stylesheetRule.type);
+    }
+  }
+
+  const atRuleTitles = getMatchingAtRuleTitles({ atRules: matchedAtRules });
+  checkFeatures({ clients, issues, titles: atRuleTitles });
+};
+
+export const checkHtml = ({ clients, issues, document, source }: CheckHtmlArgs) => {
+  const locationIndex = new LocationIndex(source);
+
   for (const childNode of document.childNodes) {
     if (childNode.type === ElementType.Tag) {
-      checkHtmlNode({ clients, issues, node: childNode as Element });
+      checkHtmlNode({ clients, issues, node: childNode as Element, locationIndex });
     }
   }
 };
