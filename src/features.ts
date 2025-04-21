@@ -1,18 +1,31 @@
 import { getProperty } from 'dot-prop';
 import onetime from 'onetime';
 
-import { getSupportType, type EmailClient } from './clients.js';
+import { getSupportType, type EmailClient, type SupportTypeResult } from './clients.js';
 import { caniEmailJson, type RawFeatureData } from './json.cjs';
 
 export { caniEmailJson as rawData };
 
-export interface FeatureInfo extends FeatureIssue {
-  url: string;
+interface PositionPoint {
+  line: number;
+  column: number;
+}
+
+export interface Position {
+  start: PositionPoint;
+  end: PositionPoint;
+  source?: string;
 }
 
 export interface FeatureIssue {
   notes: string[];
   title: string;
+  position?: Position;
+  support: SupportTypeResult['type'];
+}
+
+export interface FeatureInfo extends FeatureIssue {
+  url: string;
 }
 
 export interface FeatureIssues {
@@ -74,13 +87,14 @@ export const getAllFeatures = (clients: EmailClient[]) => {
 
       const supportStatus = getSupportType(supportMap);
       const notes = (supportStatus.noteNumbers ?? []).map(
-        (noteNumber) => feature.notes_by_num![String(noteNumber)]
+        (noteNumber: number) => feature.notes_by_num![String(noteNumber)]
       );
+      const support = supportStatus.type;
 
-      if (supportStatus.type === 'none') {
-        results.unsupported.set(client, { notes, title, url });
-      } else if (supportStatus.type === 'partial') {
-        results.supported.set(client, { notes, title, url });
+      if (support === 'none') {
+        results.unsupported.set(client, { notes, support, title, url });
+      } else {
+        results.supported.set(client, { notes, support, title, url });
       }
     }
   }

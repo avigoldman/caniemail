@@ -6,6 +6,7 @@ import { parseClients, type EmailClient, type EmailClientGlobs } from './clients
 import { FeatureMap, type FeatureIssues, type FeatureIssue } from './features.js';
 import { parseCss, parseHtml } from './helpers.js';
 
+export * from './helpers.js';
 export { getAllFeatures, rawData } from './features.js';
 
 export interface CanIEmailOptions {

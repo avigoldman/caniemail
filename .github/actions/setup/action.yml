@@ -8,9 +8,6 @@ runs:
       with:
         fetch-depth: 0
 
-    - name: Setup Moon
-      uses: moonrepo/setup-toolchain@v0
-
     - name: Setup Node
       uses: actions/setup-node@v3
       with:

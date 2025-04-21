@@ -26,11 +26,11 @@ describe('exports', () => {
 describe('check() works', () => {
   test('works with blank email template', () => {
     const code = outdent`
-  	<!doctype html>
-  	<html>
-  		<body>
-  		</body>
-  	</html>
+    <!doctype html>
+    <html>
+      <body>
+      </body>
+    </html>
   `;
     const result = caniemail({ clients: ['gmail.*'], html: code });
     expect(result.success).toEqual(true);
@@ -38,19 +38,19 @@ describe('check() works', () => {
   });
 
   test('parses CSS', () => {
-    const code = `.test { background-color: orange }`;
-    const result = caniemail({ clients: ['gmail.*'], css: code });
+    const code = `.test { background-color: orange; width: 1rem; }`;
+    const result = caniemail({ clients: ['gmail.*', 'outlook.windows'], css: code });
     expect(result).toMatchSnapshot();
   });
 
   test('parses inline CSS', () => {
     const code = outdent`
-  	<!doctype html>
-  	<html>
-  		<body>
-  			<div style='background-color: orange'></div>
-  		</body>
-  	</html>
+    <!doctype html>
+    <html>
+      <body>
+        <div style='background-color: orange'></div>
+      </body>
+    </html>
   `;
     const result = caniemail({ clients: ['gmail.*'], html: code });
     expect(result.success).toEqual(true);
@@ -60,19 +60,19 @@ describe('check() works', () => {
   test('should fail on unsupported <style> features', () => {
     // `filter` isn't supported by gmail.desktop-webmail: https://www.caniemail.com/features/css-filter/
     const code = outdent`
-  	<!doctype html>
-  	<html>
-  		<head>
-  			<style>
-  				.container {
-  					filter: blur(50%);
-  				}
-  			</style>
-  		</head>
-  		<body>
-  			<div class='container' style='background-color: orange'></div>
-  		</body>
-  	</html>
+    <!doctype html>
+    <html>
+      <head>
+        <style>
+          .container {
+            filter: blur(50%);
+          }
+        </style>
+      </head>
+      <body>
+        <div class='container' style='background-color: orange'></div>
+      </body>
+    </html>
   `;
     const result = caniemail({ clients: ['gmail.desktop-webmail'], html: code });
     expect(result.success).toEqual(false);
@@ -90,12 +90,12 @@ describe('check() works', () => {
   test('should fail on unsupported inline-style features', () => {
     // `flex-direction: column` isn't supported by Gmail: https://www.caniemail.com/features/css-flex-direction/
     const code = outdent`
-  	<!doctype html>
-  	<html>
-  		<body>
-  			<div style='flex-direction: column'></div>
-  		</body>
-  	</html>
+    <!doctype html>
+    <html>
+      <body>
+        <div style='flex-direction: column'></div>
+      </body>
+    </html>
   `;
     const result = caniemail({ clients: ['gmail.desktop-webmail'], html: code });
     expect(result.success).toEqual(false);
@@ -105,20 +105,20 @@ describe('check() works', () => {
   test('should work with selectors', () => {
     // Desktop webmail supports most selectors
     const code = outdent`
-  	<!doctype html>
-  	<html>
-  		<head>
-  			<style>
-  				div > a#linkId[href="https://google.com"].link {}
-  				* { box-sizing: border-box }
-  			</style>
-  		</head>
-  		<body>
-  			<div>
-  				<a id='linkId' class='link' href='https://google.com'></div>
-  			</div>
-  		</body>
-  	</html>
+    <!doctype html>
+    <html>
+      <head>
+        <style>
+          div > a#linkId[href="https://google.com"].link {}
+          * { box-sizing: border-box }
+        </style>
+      </head>
+      <body>
+        <div>
+          <a id='linkId' class='link' href='https://google.com'></div>
+        </div>
+      </body>
+    </html>
   `;
     const result = caniemail({ clients: ['gmail.desktop-webmail'], html: code });
     expect(result.success).toEqual(true);
@@ -129,16 +129,16 @@ describe('check() works', () => {
     {
       // iOS Gmail does not support local anchors: https://www.caniemail.com/features/html-anchor-links/
       const code = outdent`
-  		<!doctype html>
-  		<html>
-  			<body>
-  				<div>
-  					<div id='header'>Header</div>
-  					<a href='#header'></div>
-  				</div>
-  			</body>
-  		</html>
-  	`;
+      <!doctype html>
+      <html>
+        <body>
+          <div>
+            <div id='header'>Header</div>
+            <a href='#header'></div>
+          </div>
+        </body>
+      </html>
+    `;
       const result = caniemail({ clients: ['gmail.ios'], html: code });
       expect(result.success).toEqual(false);
       expect(result).toMatchSnapshot();
@@ -147,11 +147,11 @@ describe('check() works', () => {
     {
       // Outlook windows doesn't support `display: flex`: https://www.caniemail.com/features/css-display-flex/
       const code = outdent`
-  		<div style='display: flex'>
-  			<div>Hello,</div>
-  			<div>world!</div>
-  		</div>
-  	`;
+      <div style='display: flex'>
+        <div>Hello,</div>
+        <div>world!</div>
+      </div>
+    `;
       const result = caniemail({ clients: ['outlook.windows'], html: code });
       expect(result.success).toEqual(false);
       expect(result).toMatchSnapshot();
@@ -161,8 +161,8 @@ describe('check() works', () => {
   test('works with empty styles', () => {
     // iOS Gmail does not support local anchors: https://www.caniemail.com/features/html-anchor-links/
     const code = outdent`
-  	<style></style>
-  	<div style=''></div>
+    <style></style>
+    <div style=''></div>
   `;
     const result = caniemail({ clients: ['gmail.ios'], html: code });
     expect(result.success).toEqual(true);
@@ -172,10 +172,10 @@ describe('check() works', () => {
   test('fails with unsupported class selectors', () => {
     // iOS webmail does not support class selectors: https://www.caniemail.com/features/html-anchor-links/
     const code = outdent`
-  	<style>
-  		.a {}
-  	</style>
-  	<div class='a'></div>
+    <style>
+     .a {}
+    </style>
+    <div class='a'></div>
   `;
     const result = caniemail({ clients: ['gmail.mobile-webmail'], html: code });
     expect(result.success).toEqual(false);
@@ -185,10 +185,10 @@ describe('check() works', () => {
   test('checks content with rem unit', () => {
     // iOS webmail does not support class selectors: https://www.caniemail.com/features/html-anchor-links/
     const code = outdent`
-  	<style>
-  		.a { width: 1rem; }
-  	</style>
-  	<div class='a'></div>
+    <style>
+      .a { width: 1rem; }
+    </style>
+    <div class='a'></div>
   `;
     const result = caniemail({ clients: ['outlook.windows'], html: code });
     expect(result.success).toEqual(false);

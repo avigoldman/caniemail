@@ -1,0 +1,51 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`issue formatting > groups single map of issues correctly 1`] = `
+[
+  {
+    "clients": [
+      "outlook.windows",
+      "gmail.ios",
+    ],
+    "issue": {
+      "notes": [
+        "Invalid syntax",
+      ],
+      "position": {
+        "end": {
+          "column": 15,
+          "line": 1,
+        },
+        "start": {
+          "column": 10,
+          "line": 1,
+        },
+      },
+      "support": "none",
+      "title": "Parse Error",
+    },
+  },
+  {
+    "clients": [
+      "yahoo.ios",
+    ],
+    "issue": {
+      "notes": [
+        "Different position, same title",
+      ],
+      "position": {
+        "end": {
+          "column": 10,
+          "line": 2,
+        },
+        "start": {
+          "column": 5,
+          "line": 2,
+        },
+      },
+      "support": "none",
+      "title": "Parse Error",
+    },
+  },
+]
+`;

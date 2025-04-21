@@ -7,6 +7,18 @@ exports[`check() works > checks content with rem unit 1`] = `
       "outlook.windows" => [
         {
           "notes": [],
+          "position": {
+            "end": {
+              "column": 19,
+              "line": 2,
+            },
+            "source": "",
+            "start": {
+              "column": 8,
+              "line": 2,
+            },
+          },
+          "support": "none",
           "title": "rem unit",
         },
       ],
@@ -24,6 +36,18 @@ exports[`check() works > fails with unsupported class selectors 1`] = `
       "gmail.mobile-webmail" => [
         {
           "notes": [],
+          "position": {
+            "end": {
+              "column": 7,
+              "line": 2,
+            },
+            "source": "",
+            "start": {
+              "column": 2,
+              "line": 2,
+            },
+          },
+          "support": "none",
           "title": "Class selector",
         },
       ],
@@ -38,19 +62,81 @@ exports[`check() works > parses CSS 1`] = `
 {
   "issues": {
     "errors": Map {
+      "outlook.windows" => [
+        {
+          "notes": [],
+          "position": {
+            "end": {
+              "column": 46,
+              "line": 1,
+            },
+            "source": "",
+            "start": {
+              "column": 35,
+              "line": 1,
+            },
+          },
+          "support": "none",
+          "title": "rem unit",
+        },
+      ],
       "gmail.mobile-webmail" => [
         {
           "notes": [],
+          "position": {
+            "end": {
+              "column": 49,
+              "line": 1,
+            },
+            "source": "",
+            "start": {
+              "column": 1,
+              "line": 1,
+            },
+          },
+          "support": "none",
           "title": "Class selector",
         },
       ],
     },
     "warnings": Map {
+      "outlook.windows" => [
+        {
+          "notes": [
+            "Partial. Only \`background-color\` values are supported.",
+          ],
+          "position": {
+            "end": {
+              "column": 33,
+              "line": 1,
+            },
+            "source": "",
+            "start": {
+              "column": 9,
+              "line": 1,
+            },
+          },
+          "support": "partial",
+          "title": "background",
+        },
+      ],
       "gmail.ios" => [
         {
           "notes": [
             "Partial. Not supported with non Google accounts.",
           ],
+          "position": {
+            "end": {
+              "column": 49,
+              "line": 1,
+            },
+            "source": "",
+            "start": {
+              "column": 1,
+              "line": 1,
+            },
+          },
+          "support": "partial",
           "title": "Class selector",
         },
       ],
@@ -59,6 +145,18 @@ exports[`check() works > parses CSS 1`] = `
           "notes": [
             "Partial. Not supported with non Google accounts.",
           ],
+          "position": {
+            "end": {
+              "column": 49,
+              "line": 1,
+            },
+            "source": "",
+            "start": {
+              "column": 1,
+              "line": 1,
+            },
+          },
+          "support": "partial",
           "title": "Class selector",
         },
       ],
@@ -78,6 +176,8 @@ exports[`check() works > parses inline CSS 1`] = `
           "notes": [
             "Partial. Replaced by a \`<div>\` with supported attributes.",
           ],
+          "position": undefined,
+          "support": "partial",
           "title": "<body> element",
         },
       ],
@@ -86,6 +186,8 @@ exports[`check() works > parses inline CSS 1`] = `
           "notes": [
             "Partial. Replaced by a \`<div>\` with supported attributes.",
           ],
+          "position": undefined,
+          "support": "partial",
           "title": "<body> element",
         },
       ],
@@ -94,6 +196,8 @@ exports[`check() works > parses inline CSS 1`] = `
           "notes": [
             "Partial. Replaced by a \`<div>\` with supported attributes.",
           ],
+          "position": undefined,
+          "support": "partial",
           "title": "<body> element",
         },
       ],
@@ -102,6 +206,8 @@ exports[`check() works > parses inline CSS 1`] = `
           "notes": [
             "Partial. Replaced by a \`<div>\` with supported attributes.",
           ],
+          "position": undefined,
+          "support": "partial",
           "title": "<body> element",
         },
       ],
@@ -118,6 +224,18 @@ exports[`check() works > should fail on unsupported <style> features 1`] = `
       "gmail.desktop-webmail" => [
         {
           "notes": [],
+          "position": {
+            "end": {
+              "column": 26,
+              "line": 3,
+            },
+            "source": "",
+            "start": {
+              "column": 9,
+              "line": 3,
+            },
+          },
+          "support": "none",
           "title": "filter",
         },
       ],
@@ -128,6 +246,8 @@ exports[`check() works > should fail on unsupported <style> features 1`] = `
           "notes": [
             "Partial. Replaced by a \`<div>\` with supported attributes.",
           ],
+          "position": undefined,
+          "support": "partial",
           "title": "<body> element",
         },
       ],
@@ -144,6 +264,8 @@ exports[`check() works > should fail on unsupported inline-style features 1`] = 
       "gmail.desktop-webmail" => [
         {
           "notes": [],
+          "position": undefined,
+          "support": "none",
           "title": "flex-direction:column",
         },
       ],
@@ -154,6 +276,8 @@ exports[`check() works > should fail on unsupported inline-style features 1`] = 
           "notes": [
             "Partial. Replaced by a \`<div>\` with supported attributes.",
           ],
+          "position": undefined,
+          "support": "partial",
           "title": "<body> element",
         },
       ],
@@ -170,6 +294,18 @@ exports[`check() works > should fail on unsupported inline-style features, only 
       "gmail.desktop-webmail" => [
         {
           "notes": [],
+          "position": {
+            "end": {
+              "column": 32,
+              "line": 1,
+            },
+            "source": "",
+            "start": {
+              "column": 9,
+              "line": 1,
+            },
+          },
+          "support": "none",
           "title": "flex-direction:column",
         },
       ],
@@ -189,6 +325,8 @@ exports[`check() works > should fail with unsupported element-attribute pairs 1`
           "notes": [
             "Buggy. Clicking an anchor link does nothing.",
           ],
+          "position": undefined,
+          "support": "none",
           "title": "Local anchors",
         },
       ],
@@ -199,6 +337,8 @@ exports[`check() works > should fail with unsupported element-attribute pairs 1`
           "notes": [
             "Partial. Replaced by a \`<div>\` with supported attributes.",
           ],
+          "position": undefined,
+          "support": "partial",
           "title": "<body> element",
         },
       ],
@@ -215,6 +355,8 @@ exports[`check() works > should fail with unsupported element-attribute pairs 2`
       "outlook.windows" => [
         {
           "notes": [],
+          "position": undefined,
+          "support": "none",
           "title": "display:flex",
         },
       ],
@@ -226,6 +368,8 @@ exports[`check() works > should fail with unsupported element-attribute pairs 2`
             "Buggy. \`display:none\` does not inherit to inner tables.",
             "Partial. Only supports \`display:none\` (but not on \`<img>\`).",
           ],
+          "position": undefined,
+          "support": "partial",
           "title": "display",
         },
       ],
@@ -245,12 +389,26 @@ exports[`check() works > should work with selectors 1`] = `
           "notes": [
             "Partial. Only supports \`[attr~=value]\` syntax. Only \`class\` as an attribute name is known to be supported.",
           ],
+          "position": {
+            "end": {
+              "column": 56,
+              "line": 2,
+            },
+            "source": "",
+            "start": {
+              "column": 7,
+              "line": 2,
+            },
+          },
+          "support": "partial",
           "title": "Attribute selector",
         },
         {
           "notes": [
             "Partial. Replaced by a \`<div>\` with supported attributes.",
           ],
+          "position": undefined,
+          "support": "partial",
           "title": "<body> element",
         },
       ],
@@ -270,6 +428,8 @@ exports[`check() works > works with blank email template 1`] = `
           "notes": [
             "Partial. Replaced by a \`<div>\` with supported attributes.",
           ],
+          "position": undefined,
+          "support": "partial",
           "title": "<body> element",
         },
       ],
@@ -278,6 +438,8 @@ exports[`check() works > works with blank email template 1`] = `
           "notes": [
             "Partial. Replaced by a \`<div>\` with supported attributes.",
           ],
+          "position": undefined,
+          "support": "partial",
           "title": "<body> element",
         },
       ],
@@ -286,6 +448,8 @@ exports[`check() works > works with blank email template 1`] = `
           "notes": [
             "Partial. Replaced by a \`<div>\` with supported attributes.",
           ],
+          "position": undefined,
+          "support": "partial",
           "title": "<body> element",
         },
       ],
@@ -294,6 +458,8 @@ exports[`check() works > works with blank email template 1`] = `
           "notes": [
             "Partial. Replaced by a \`<div>\` with supported attributes.",
           ],
+          "position": undefined,
+          "support": "partial",
           "title": "<body> element",
         },
       ],

@@ -48,7 +48,7 @@ type Platform = ClientTuple[1];
 
 export type EmailClientGlobs = '*' | `${Provider}.${Platform}` | `*.${Platform}` | `${Provider}.*`;
 
-interface SupportTypeResult {
+export interface SupportTypeResult {
   noteNumbers: number[] | undefined;
   type: 'full' | 'partial' | 'none';
 }

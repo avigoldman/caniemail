@@ -2,6 +2,14 @@ import css, { type CssStylesheetAST } from '@adobe/css-tools';
 import type { Document, Element, Node, Text } from 'domhandler';
 import * as htmlparser from 'htmlparser2';
 
+import { type FeatureMap, type FeatureIssue } from './features.js';
+import { type EmailClient } from './clients.js';
+
+export interface IssueGroup {
+  issue: FeatureIssue;
+  clients: EmailClient[];
+}
+
 interface ParseHtmlResult {
   document: Document;
   stylesheets: CssStylesheetAST[];
@@ -38,6 +46,29 @@ const getStyleNodes = (node: Node) => {
   return results;
 };
 
+export const groupIssues = (issues: FeatureMap<FeatureIssue>): IssueGroup[] => {
+  const groupedIssues = new Map<string, IssueGroup>();
+
+  for (const [client, clientIssues] of issues.entries()) {
+    for (const issue of clientIssues) {
+      if (!issue.position) continue;
+
+      const key = `${issue.position.start.line}:${issue.position.start.column}:${issue.title}`;
+
+      if (!groupedIssues.has(key)) {
+        groupedIssues.set(key, {
+          issue,
+          clients: [client]
+        });
+      } else {
+        groupedIssues.get(key)!.clients.push(client);
+      }
+    }
+  }
+
+  return Array.from(groupedIssues.values());
+};
+
 export const parseCss = (cssContent: string) => css.parse(cssContent);
 
 export const parseHtml = (html: string): ParseHtmlResult => {
@@ -60,4 +91,12 @@ export const parseHtml = (html: string): ParseHtmlResult => {
     document,
     stylesheets
   };
+};
+
+export const sortIssues = (groupedIssues: IssueGroup[]): IssueGroup[] => {
+  return [...groupedIssues].sort((a, b) => {
+    const aPos = a.issue.position!.start;
+    const bPos = b.issue.position!.start;
+    return aPos.line === bPos.line ? aPos.column - bPos.column : aPos.line - bPos.line;
+  });
 };
