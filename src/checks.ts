@@ -247,7 +247,7 @@ const checkHtmlNode = ({
 
   if ('childNodes' in node) {
     for (const childNode of node.childNodes) {
-      if (childNode.type === ElementType.Tag) {
+      if (childNode.type === ElementType.Tag || childNode.type === ElementType.Style) {
         checkHtmlNode({ clients, issues, node: childNode as Element, locationIndex });
       }
     }

@@ -12075,6 +12075,23 @@ exports[`check() works > should fail on unsupported <style> features 1`] = `
       "gmail.desktop-webmail" => [
         {
           "notes": [
+            "Partial. Not supported inside the \`<body>\`.",
+          ],
+          "position": {
+            "end": {
+              "column": 12,
+              "line": 8,
+            },
+            "start": {
+              "column": 5,
+              "line": 4,
+            },
+          },
+          "support": "partial",
+          "title": "<style> element",
+        },
+        {
+          "notes": [
             "Partial. Replaced by a \`<div>\` with supported attributes.",
           ],
           "position": {
@@ -12296,6 +12313,23 @@ exports[`check() works > should work with selectors 1`] = `
           },
           "support": "partial",
           "title": "Attribute selector",
+        },
+        {
+          "notes": [
+            "Partial. Not supported inside the \`<body>\`.",
+          ],
+          "position": {
+            "end": {
+              "column": 12,
+              "line": 7,
+            },
+            "start": {
+              "column": 5,
+              "line": 4,
+            },
+          },
+          "support": "partial",
+          "title": "<style> element",
         },
         {
           "notes": [
