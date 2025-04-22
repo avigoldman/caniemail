@@ -1,7 +1,8 @@
 import type { CssStylesheetAST } from '@adobe/css-tools';
 import type { Document } from 'domhandler';
 
-import { checkHtml, checkStylesheet } from './checks.js';
+import { checkHtml } from './checks/check-html.js';
+import { checkStylesheet } from './checks/check-css.js';
 import { parseClients, type EmailClient, type EmailClientGlobs } from './clients.js';
 import { FeatureMap, type FeatureIssues, type FeatureIssue } from './features.js';
 import { parseCss, parseHtml } from './helpers.js';
