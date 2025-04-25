@@ -2,8 +2,8 @@ import css, { type CssStylesheetAST } from '@adobe/css-tools';
 import type { Document, Element, Node, Text } from 'domhandler';
 import * as htmlparser from 'htmlparser2';
 
-import { type FeatureMap, type FeatureIssue } from './features.js';
 import { type EmailClient } from './clients.js';
+import { type FeatureIssue, type FeatureMap } from './features.js';
 
 export interface IssueGroup {
   issue: FeatureIssue;

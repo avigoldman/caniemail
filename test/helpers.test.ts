@@ -1,6 +1,7 @@
 import { describe, expect, test } from 'vitest';
-import { FeatureMap, type FeatureIssue } from '../dist/features';
-import { groupIssues, sortIssues, type IssueGroup } from '../dist/helpers';
+
+import { type FeatureIssue, FeatureMap } from '../dist/features';
+import { type IssueGroup, groupIssues, sortIssues } from '../dist/helpers';
 
 describe('issue formatting', () => {
   test('groups single map of issues correctly', () => {

@@ -1,8 +1,8 @@
 import { getProperty } from 'dot-prop';
 import onetime from 'onetime';
 
-import { getSupportType, type EmailClient, type SupportTypeResult } from './clients.js';
-import { caniEmailJson, type RawFeatureData } from './json.cjs';
+import { type EmailClient, type SupportTypeResult, getSupportType } from './clients.js';
+import { type RawFeatureData, caniEmailJson } from './json.cjs';
 
 export { caniEmailJson as rawData };
 

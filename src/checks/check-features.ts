@@ -1,7 +1,7 @@
 import { getProperty } from 'dot-prop';
 
 import { getSupportType } from '../clients.js';
-import { getFeatures, type FeatureIssue, type Position } from '../features.js';
+import { type FeatureIssue, type Position, getFeatures } from '../features.js';
 
 import { type BaseCheckArgs } from './check-base.js';
 

@@ -1,7 +1,7 @@
 import { describe, expect, test } from 'vitest';
 
-import { getAllFeatures } from '../dist/features.js';
 import { parseClients } from '../dist/clients.js';
+import { getAllFeatures } from '../dist/features.js';
 
 describe('all features', () => {
   test('getAllFeatures()', () => {

@@ -1,9 +1,9 @@
+import { readFile } from 'node:fs/promises';
+import { join } from 'node:path';
 import { outdent } from 'outdent';
 import { describe, expect, test } from 'vitest';
 
 import { caniemail } from '../dist/index.js';
-import { readFile } from 'node:fs/promises';
-import { join } from 'node:path';
 
 describe('exports', () => {
   test('data', async () => {

@@ -1,5 +1,4 @@
 /* eslint-disable func-names */
-
 import { getFeatures } from './features.js';
 import { fromTitleEntries, getTitleMatches } from './helpers.js';
 

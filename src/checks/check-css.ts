@@ -1,4 +1,5 @@
 import type { CssStylesheetAST } from '@adobe/css-tools';
+
 import {
   getMatchingAtRuleTitles,
   getMatchingFunctionTitles,
@@ -7,10 +8,10 @@ import {
   getMatchingPropertyValuePairTitles,
   getMatchingUnitTitles
 } from '../css-titles.js';
-import { getFeatures, type Position } from '../features.js';
+import { type Position, getFeatures } from '../features.js';
 import { getMatchingPseudoSelectorTitles, getMatchingSelectorTitles } from '../selectors.js';
 
-import { adjustPosition, type BaseCheckArgs } from './check-base.js';
+import { type BaseCheckArgs, adjustPosition } from './check-base.js';
 import { checkFeatures } from './check-features.js';
 
 interface CheckDeclarationsArgs extends BaseCheckArgs {
