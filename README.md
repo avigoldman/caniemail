@@ -21,7 +21,7 @@ pnpm add caniemail
 
 ## Exports
 
-### caniemail(html, options)
+### caniemail(options)
 
 Returns:
 
@@ -112,7 +112,8 @@ Required: `false`
 
 HTML string to analyze for email client compatibility.
 
-_Note: At least one of `css` or `html` must be provided._
+> [!NOTE]  
+> At least one of `css` or `html` must be provided.
 
 ### `formatIssue(options)`
 
